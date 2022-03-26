@@ -9,9 +9,12 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
+    "@faker-js/faker": "^6.0.0",
     "cypress": "^9.5.2",
     "cypress-file-upload": "^5.0.8",
-    "cypress-xpath": "^1.6.2"
+    "cypress-xpath": "^1.6.2",
+    "faker": "^6.6.6",
+    "gerador-validador-cpf": "^5.0.2"
   },
   "dependencies": {
     "cypress-real-events": "^1.7.0"
