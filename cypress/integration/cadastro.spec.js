@@ -2,7 +2,7 @@ import SignupPage from '../pages/SignupPage'
 
 describe('Cadastro', () => {
     
-    it('Usuário deve registrar como entregador', () => {
+    it('User should be a delivery man', () => {
         
         //massa de teste
         var delivery = {
