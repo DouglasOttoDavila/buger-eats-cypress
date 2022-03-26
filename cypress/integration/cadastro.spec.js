@@ -1,47 +1,67 @@
+import SignupPage from '../pages/SignupPage'
+
 describe('Cadastro', () => {
     
     it('Usuário deve registrar como entregador', () => {
-        cy.viewport(1440, 900)
-        cy.visit('https://buger-eats.vercel.app')
-        
-        cy.get('a[href="/deliver"]').click()
-        cy.get('#page-deliver form h1').should('have.text','Cadastre-se para  fazer entregas')
         
         //massa de teste
-        var entregador = {
-            nome: 'Douglas Davila',
-            cpf: '00000000000',
+        var delivery = {
+            name: 'Douglas Davila',
+            cpf: '10797521022',
             email: 'davila@gmail.com',
             whatsapp: '51000000000',
-            endereco: {
-                cep: '91180590',
-                rua: 'Rua General Telino Chagastelles',
-                numero: '1000',
-                complemento: 'Ap 666',
-                bairro: 'Parque Santa Fé',
-                cidade: 'Porto Alegre/RS'
-            }
-            
+            address: {
+                postal_code: '91180590',
+                address: 'Rua General Telino Chagastelles',
+                address_number: '1000',
+                address_details: 'Ap 666',
+                district: 'Parque Santa Fé',
+                city: 'Porto Alegre/RS'
+            },
+            delivery_method: "Moto",
+            cnh: "cnh-digital.jpg"
+        }
+
+        var signup = new SignupPage();
+
+        signup.go()
+        signup.fillForm(delivery)
+        signup.submit()
+
+        const expectedMessage = 'Recebemos os seus dados. Fique de olho na sua caixa de email, pois e em breve retornamos o contato.';
+        signup.modalContentShouldBe(expectedMessage)
+   
+        
+    
+    })
+
+    it('CPF Incorreto', () => {
+
+        //massa de teste
+        var delivery = {
+            name: 'Douglas Davila',
+            cpf: '107975210AA',
+            email: 'davila@gmail.com',
+            whatsapp: '51000000000',
+            address: {
+                postal_code: '91180590',
+                address: 'Rua General Telino Chagastelles',
+                address_number: '1000',
+                address_details: 'Ap 666',
+                district: 'Parque Santa Fé',
+                city: 'Porto Alegre/RS'
+            },
+            delivery_method: "Moto",
+            cnh: "cnh-digital.jpg"
 
         }
 
-        cy.get('input[name="name"]').type(entregador.nome)
-        cy.get('input[name="cpf"]').type(entregador.cpf)
-        cy.get('input[name="email"]').type(entregador.email)
-        cy.get('input[name="whatsapp"]').type(entregador.whatsapp)
-        
-        cy.get('input[name="postalcode"]').type(entregador.endereco.cep)
-        //cy.realPress("Tab")
-        cy.get('input[value="Buscar CEP"]').click()
-        cy.get('input[name="address-number"]').type(entregador.endereco.numero)
-        cy.get('input[name="address-details"]').type(entregador.endereco.complemento)
-        
-        cy.wait(2000)
-        cy.get('input[name="address"]').should('have.value', entregador.endereco.rua)
-        cy.get('input[name="district"]').should('have.value', entregador.endereco.bairro)
-        cy.get('input[name="city-uf"]').should('have.value', entregador.endereco.cidade)
+        var signup = new SignupPage()
 
-    
-    
+        signup.go()
+        signup.fillForm(delivery)
+        signup.submit()
+        signup.alertMessageShouldBe('Oops! CPF inválido')
+        
     })
 })

@@ -9,7 +9,9 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
-    "cypress": "^9.5.2"
+    "cypress": "^9.5.2",
+    "cypress-file-upload": "^5.0.8",
+    "cypress-xpath": "^1.6.2"
   },
   "dependencies": {
     "cypress-real-events": "^1.7.0"
