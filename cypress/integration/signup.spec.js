@@ -1,3 +1,6 @@
+//npm test > abre UI do Cypress
+//npx cypress run > roda em modo headless todos os testes
+
 //importa a classe de signup
 import signup from '../pages/SignupPage'
 
